@@ -68,8 +68,9 @@ Route::get('/', function () {
     echo '標題: '.$post->title.'<br>';
     echo '內容: '.$post->content.'<br>';
     echo '--------------------------'.'<br>';
-    $comments = $post->comments()->get();   //$post->comments()->get()可簡寫$post->comments
-    foreach ($comments as $comment){
+//  $comments = $post->comments()->get();   //$post->comments()->get()可簡寫$post->comments
+    $comments = $post->comments;
+	foreach ($comments as $comment){
         echo '留言: '.$comment->content."<br>";
         echo '-----------------------------'.'<br>';
     }
