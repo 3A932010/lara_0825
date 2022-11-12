@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-     return redirect(route('posts.index'));
+     //return redirect(route('posts.index'));
+	$post = new Post();     //先產生 Post 的物件 $post ， $post 將代表 posts 資料表的一篇貼文
+    $post->title = 'test title';        //指定貼文的title
+    $post->content = 'test content';    //指定貼文的content
+    $post->save();          //將新貼文 $post 存入 posts 資料表
+    return 'Saved, OK!';
 });
 Route::get('posts',[PostController::class, 'index'])->name('posts.index');
 Route::get('post',[PostController::class, 'show'])->name('posts.show');
